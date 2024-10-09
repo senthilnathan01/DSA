@@ -36,6 +36,10 @@ int count_digits_3(int n){
     return cnt = to_string(n).length();
 }
 
+// Complexity Analysis: 
+// Time Complexity: O(1)
+// Space Complexity: O(1)
+
 int main(){
     int n;
     cin >> n;
