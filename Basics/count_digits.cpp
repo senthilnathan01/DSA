@@ -30,11 +30,17 @@ int count_digits_2(int n){
 // Time Complexity: O(1)
 // Space Complexity: O(1)
 
+// One more approach is to convert the number to a string and use length() function
+int count_digits_3(int n){
+    int cnt;
+    return cnt = to_string(n).length();
+}
 
 int main(){
     int n;
     cin >> n;
     cout << "The number of digits are: " << count_digits_1(n) << endl;
-    cout << "The number of digits are: " << count_digits_2(n) << endl;    
+    cout << "The number of digits are: " << count_digits_2(n) << endl;
+    cout << "The number of digits are: " << count_digits_3(n) << endl;     
     return 0;
 }
