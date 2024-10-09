@@ -27,6 +27,9 @@ vector<int> extractDigits(int N) {
     return extracted_digits; 
 }
 
+// Complexity analysis:
+// Time complexity = O(log10(n))
+// Space complexity = O(log10(n))
 
 int main() {
     int N = 3298;
@@ -40,7 +43,7 @@ int main() {
         cout << num << " ";
     }
     cout << endl;
-    
+
     return 0;
 }
                             
