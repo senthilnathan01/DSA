@@ -27,7 +27,8 @@ int count_digits_2(int n){
 }
 
 // Complexity Analysis: 
-// 
+// Time Complexity: O(1)
+// Space Complexity: O(1)
 
 
 int main(){
