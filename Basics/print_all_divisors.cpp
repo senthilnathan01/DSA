@@ -3,6 +3,8 @@
 #include<cmath>
 using namespace std;
 
+// Brute force approach
+
 vector<int> print_divisors_1(int n){
     vector<int> divisors;
     for(int i=1; i<=n; i++){
@@ -17,6 +19,7 @@ vector<int> print_divisors_1(int n){
 // Time complexity = O(N)
 // Space complexity = O(N)
 
+// Better approach
 
 vector<int> print_divisors_2(int n){
     vector<int> divisors;
