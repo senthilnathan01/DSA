@@ -2,9 +2,9 @@
 using namespace std;
 
 void func(int l,int n, int arr[]){
-    if(l>=n/2) return;
-    swap(arr[l], arr[n-l-1]);
-    func(l+1, n, arr);
+    if(l>=n) return;
+    swap(arr[l], arr[n-1]);
+    func(l+1, n-1, arr);
 }
 
 int main(){
