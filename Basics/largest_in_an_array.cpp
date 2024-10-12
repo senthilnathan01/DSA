@@ -1,16 +1,20 @@
-#include<iostream>
-#include<algorithm>
+#include <iostream>
+#include <algorithm>
+
 using namespace std;
 
-int largest(int arr[], int n){
-    return *max_element(arr, arr+n);
+// Finds the largest element in an array.
+int find_largest_element(int arr[], int size) {
+    return *max_element(arr, arr + size);
 }
 
-int main(){
-    int arr[] = {1, 10, 9, 54, 2, 2};
+int main() {
+    int numbers[] = {1, 10, 9, 54, 2, 2};
 
-    int n = sizeof(arr)/sizeof(arr[0]);
+    // Calculate the size of the array dynamically.
+    int array_size = sizeof(numbers) / sizeof(numbers[0]);
 
-    cout<<"Max element: "<< largest(arr, n);
+    cout << "The largest element is: " << find_largest_element(numbers, array_size) << endl;
+
     return 0;
 }
