@@ -6,7 +6,7 @@ Given an array arr[] sorted in ascending order of size N and an integer K.
 Check if K is present in the array or not.
 */
 
-// We use binary search to do this task.
+// We use binary search to do this task (mainly because the array is already sorted).
 // Time complexity = O(logn)
 
 // Whereas if you use linear search the time complexity will O(n)
