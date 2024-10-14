@@ -15,7 +15,7 @@ int binary_search(int arr[], int low, int high, int K){
     if(low<=high){
         int mid = low + (high-low)/2;
         if(K==arr[mid]){
-            return 1;
+            return mid;
         }
         else if(K<arr[mid]){
             return binary_search(arr, low, mid-1, K);
