@@ -18,7 +18,7 @@ int binary_search(int arr[], int low, int high, int K){
             return 1;
         }
         else if(K<arr[mid]){
-            return binary_search(arr, 0, mid-1, K);
+            return binary_search(arr, low, mid-1, K);
         }
         else{
             return binary_search(arr, mid+1, high, K);
