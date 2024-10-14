@@ -17,6 +17,7 @@ Find that single one.
 
 // Finds the single number that appears once in a given array.
 int singleNumber1(const vector<int>& nums) {
+    // <unordered_map> header has to be included
     unordered_map<int, int> counts;
     for (int num : nums) {
         counts[num]++;
