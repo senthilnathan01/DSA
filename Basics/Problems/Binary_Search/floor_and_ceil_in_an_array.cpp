@@ -11,7 +11,7 @@ Return -1 for floor or ceiling if the floor or ceiling is not present.
 */
 
 // Finds the floor and ceiling of a given element in a sorted array.
-vector<int> find_floor_and_ceil(int x, const vector<int>& arr) {
+vector<int> find_floor_and_ceil(int x, vector<int>& arr) {
     vector<int> result(2, -1); // Initialize result with -1 for both floor and ceil
 
     // Sort the array in ascending order if not already sorted.
@@ -52,7 +52,7 @@ vector<int> find_floor_and_ceil(int x, const vector<int>& arr) {
 
 int main() {
     vector<int> v = {10, 24, 69, 9};
-    vector<int> ans = getFloorAndCeil(7, v);
+    vector<int> ans = find_floor_and_ceil(7, v);
     for(int num: ans){
         cout<<num<<" ";
     }
