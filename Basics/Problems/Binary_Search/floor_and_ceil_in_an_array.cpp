@@ -1,6 +1,7 @@
 #include <iostream>
 #include<vector>
 #include<algorithm>
+
 using namespace std;
 
 /*
@@ -9,39 +10,44 @@ Return an array of integers denoting the [floor, ceil].
 Return -1 for floor or ceiling if the floor or ceiling is not present.
 */
 
-vector<int> getFloorAndCeil(int x, vector<int> &arr) {
-    // code here
-    vector<int> ans;
-    int low = 0;
-    int high = arr.size()-1;
-    // Sort the array
+// Finds the floor and ceiling of a given element in a sorted array.
+vector<int> find_floor_and_ceil(int x, const vector<int>& arr) {
+    vector<int> result(2, -1); // Initialize result with -1 for both floor and ceil
+
+    // Sort the array in ascending order if not already sorted.
     sort(arr.begin(), arr.end());
 
-    // Finds the floor of a given element in a sorted array.
-    int floor = -1;
-    while(low<=high){
-        int mid = low + (high-low)/2;
-        if(arr[mid]<=x) low = mid + 1;
-        else high = mid - 1;
+    // Find the floor of x using binary search.
+    int low = 0;
+    int high = arr.size() - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] <= x) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
     }
-    if(arr[high]<=x) floor = arr[high];
-    
-    ans.push_back(floor);
+    if (arr[high] <= x) {
+        result[0] = arr[high];
+    }
 
+    // Find the ceiling of x using binary search.
     low = 0;
-    high = arr.size()-1;
-    
-    // Finds the ceil of a given element in a sorted array.
-    int ceil = -1;
-    while(low<=high){
-        int mid = low + (high-low)/2;
-        if(arr[mid]<=x) low = mid + 1;
-        else high = mid - 1;
+    high = arr.size() - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] <= x) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
     }
-    if(arr[low]>=x) ceil = arr[low];
-    ans.push_back(ceil);
+    if (arr[low] >= x) {
+        result[1] = arr[low];
+    }
 
-    return ans;     
+    return result;
 }
 
 int main() {
