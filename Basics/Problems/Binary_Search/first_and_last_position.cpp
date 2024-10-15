@@ -42,13 +42,14 @@ int lower_bound(vector<int>& nums, int low, int high, int target){
 }
 
 vector<int> searchRange_binary(vector<int>& nums, int target) {
-    int low = 0, high = nums.size()-1;
-    int startPosition = lower_bound(nums, low, high, target);
-    int endPosition = lower_bound(nums, low, high, target+1)-1;
-    if(startPosition<nums.size() && nums[startPosition]==target){
-        return {startPosition, endPosition};
+    int low = 0, high = nums.size()-1, startPosition = -1, endPosition = -1;
+    startPosition = lower_bound(nums, low, high, target);
+    if(startPosition!=-1)
+    {
+        int endPosition = lower_bound(nums, low, high, target+1)-1;
     }
-    return {-1, -1};
+
+    return {startPosition, endPosition};
 }   
 
 int main() {
