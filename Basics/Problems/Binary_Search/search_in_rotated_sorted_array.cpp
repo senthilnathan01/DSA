@@ -5,8 +5,23 @@
 using namespace std;
 
 /*
-Given a sorted array Arr of size N and a number X, you need to find the number of occurrences of X in Arr.
+There is an integer array nums sorted in ascending order (with distinct values).
+
+Prior to being passed to your function, nums is possibly rotated at an unknown pivot index k (1 <= k < nums.length) 
+such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). 
+For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].
+
+Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
 */
+
+// 3 Approaches (last approach is the best)
+
+// Approach 1:
+// Rotate the array to its original state -> do normal binary search -> get the index in sorted array 
+// -> get the index in the unsorted array by doing rotation
+
+// But this is a complicated answer as the linear search will just take O(n) which is similar to the time
+// taken when creating the sorted array by rotation
 
 int search1(vector<int>& nums, int target) {
     int size = nums.size();
@@ -37,10 +52,50 @@ int search1(vector<int>& nums, int target) {
     return -1;
 }
 
+// Approach 2:
+// Linear search
+
+// Approach 3:
+// Just using modified binary search 
+
+int search3(vector<int>& nums, int target){
+    int low =0, high = nums.size()-1;
+    while(low<=high)
+    {
+        int mid = low + (high-low)/2;
+        if(nums[mid]==target) return mid;
+        if(nums[low]<=nums[mid]) // Check if the left half is sorted
+        {
+            if(nums[low]<= target && target < nums[mid])
+            {
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        }
+        else // Right half must be sorted
+        {
+            if(nums[mid]<target && target <= nums[high])
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid - 1;
+            }
+        }
+        
+    }
+    return -1;
+}
 
 int main() {
     vector<int> nums = {4,5,6,7,0,1,2};
     int ans = search1(nums, 2); 
+    cout<<ans<<endl;
+    int ans = search3(nums, 2);
     cout<<ans;
     return 0;
 }
