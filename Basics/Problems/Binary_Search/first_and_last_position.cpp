@@ -13,7 +13,7 @@ If target is not found in the array, return [-1, -1].
 vector<int> searchRange_linear(vector<int>& nums, int target) {
     vector<int> ans(2,-1);
     int t = nums.size();
-    // Last poisition
+    // Last position
     while(t--){
         if(nums[t]==target){
             ans[1]=t;
@@ -21,11 +21,14 @@ vector<int> searchRange_linear(vector<int>& nums, int target) {
         }
     }
 
-    // First position
-    for(int i = 0; i<nums.size();i++){
-        if(nums[i]==target){
-            ans[0]=i;
-            break;
+    if(nums[t] == target){
+        // Find the first position only if the element exists in the array
+        // First position
+        for(int i = 0; i<nums.size();i++){
+            if(nums[i]==target){
+                ans[0]=i;
+                break;
+            }
         }
     }
     return ans;
