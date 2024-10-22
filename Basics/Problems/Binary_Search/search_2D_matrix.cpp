@@ -31,10 +31,10 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
             if (mid_row < rows - 1 && matrix[mid_row + 1][0] > target) {
                 break; // Target is in this row
             } else {
-                low_row = mid_row + 1; // Target is in a lower row
+                low_row = mid_row + 1; // Target is in a higher value row
             }
         } else {
-            high_row = mid_row - 1; // Target is in a higher row
+            high_row = mid_row - 1; // Target is in a lower value row
         }
     }
 
