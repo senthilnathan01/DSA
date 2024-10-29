@@ -44,6 +44,7 @@ Node* removeHead(Node* head)
     The function deletes the current head and
     OUTPUTS: New head
     */
+    if(head == NULL) return head;
    Node* temp = head;
    head = head -> next;
    delete temp;
