@@ -42,6 +42,8 @@ Node* removeTail(Node* head)
     /*
     Deletes the tail and returns the head of the new linked list
     */
+
+   if(head==NULL || head->next == NULL) return NULL;
    Node* temp = head;
    while(temp->next->next)
    {
