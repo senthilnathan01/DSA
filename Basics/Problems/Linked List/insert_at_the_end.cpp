@@ -42,25 +42,27 @@ void printLinkedList(Node* head) {
     cout << endl;
 }
 
-void insertAtEnd(Node *head, int x) {
-    Node* tail = new Node(x);
-    if(head == NULL) head = tail;
-    else{
-        Node* temp = head;
-        while(temp->next) temp = temp->next;
-        temp -> next = tail;
+void insertAtTheEnd(Node* head, int k)
+{
+    Node* newTail = new Node(k);
+    if(head==NULL){
+        head = newTail;
+        return;
     }
+    Node* temp = head;
+    while(temp->next) temp = temp->next;
+    temp->next = newTail;
 }
 
 int main()
 {
-    vector<int> arr = {1,2,3,4};
+    vector<int> arr = {1,5,3,4};
     Node* head = createLinkedList(arr);
-    insertAtEnd(head, 5);
+    insertAtTheEnd(head, 3);
     printLinkedList(head);
 }
 
 // OUTPUT:
-// 1 2 3 4 5 
+// 1 5 3 4 3
 
 
