@@ -46,7 +46,6 @@ void insertBeforeElement(Node*& head, int val, int el)
 {
     if(head == NULL) return;
     Node* temp = head;
-    Node* current = temp;
     if(head->data == el)
     {
         Node* newHead = new Node(val, head);
@@ -55,12 +54,11 @@ void insertBeforeElement(Node*& head, int val, int el)
     }
     while(temp)
     {
-        if(temp->data == el)
+        if(temp->next->data == el)
         {
-            current->next = new Node(val, temp);
+            temp->next = new Node(val, temp->next);
             return;
         }
-        current = temp;
         temp = temp->next;
     }
 }
