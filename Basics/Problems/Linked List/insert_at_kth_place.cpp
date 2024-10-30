@@ -70,9 +70,12 @@ int main()
     Node* head = createLinkedList(arr);
     insertAtKthPlace(head, 10, 3);
     printLinkedList(head);
+    insertAtKthPlace(head, 10, 6);
+    printLinkedList(head);
 }
 
 // OUTPUT:
 // 1 5 10 3 4
+// 1 5 10 3 4 10
 
 
