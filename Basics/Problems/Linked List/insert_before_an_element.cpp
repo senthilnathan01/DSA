@@ -52,7 +52,7 @@ void insertBeforeElement(Node*& head, int val, int el)
         head = newHead;
         return;
     }
-    while(temp)
+    while(temp->next)
     {
         if(temp->next->data == el)
         {
