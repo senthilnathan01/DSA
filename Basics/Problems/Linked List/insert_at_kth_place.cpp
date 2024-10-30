@@ -52,16 +52,14 @@ void insertAtKthPlace(Node*& head, int val, int k)
     }
     int count = 0;
     Node* temp = head;
-    Node* current = temp;
     while(temp)
     {
         count++;
-        if(count == k)
+        if(count == k-1)
         {
-            current->next = new Node(val, temp);
+            temp->next = new Node(val, temp->next);
             return;
         }
-        current = temp;
         temp = temp->next;
     }
 }
