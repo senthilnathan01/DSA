@@ -8,9 +8,9 @@ void processTestCase(int n)
     int no_zeros=0;
     int no_ones = 0;
 
-    int no_of_bulbs = 2*n;
+    int no_of_switches = 2*n;
     int state = 0;
-    while(no_of_bulbs--)
+    while(no_of_switches--)
     {
         cin>>state;
         if(state==0) no_zeros++;
