@@ -12,13 +12,11 @@ void processTestCase(int n)
         if(n>1)
         {
             cout<<-1<<endl;
-            return;
         }
         else
         {
             cout<<1<<endl;
             cout<<1<<endl;
-            return;
         }
     }
 
@@ -33,7 +31,6 @@ void processTestCase(int n)
         cout<<5<<endl;
         cout<<1<<" "<<k-1<<" "<<k<<" "<<k+1<<" "<<k+2<<endl;
     }
-
 }
 
 
