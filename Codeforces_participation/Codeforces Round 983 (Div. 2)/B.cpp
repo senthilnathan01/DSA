@@ -6,7 +6,7 @@ void processTestCase(int n)
 {
     int k;
     cin>>k;
-    // Base Case
+    // Edge Case
     if(k==1 || k==n)
     {
         if(n>1)
