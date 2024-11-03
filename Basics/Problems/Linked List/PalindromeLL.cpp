@@ -52,6 +52,7 @@ void printLinkedList(Node* head) {
 // Pop the stack and move the temp to the next node till it reaches the end.
 
 bool isPalindrome1(Node* head) {
+    if(head == NULL || head->next == NULL) return true;
     stack<int> st;
     Node* temp = head;
     while(temp)
@@ -85,6 +86,7 @@ Node* reverseLL(Node* head)
 }
 
 bool isPalindrome2(Node* head) {
+    if(head == NULL || head->next == NULL) return true;
     Node* slow = head;
     Node* fast = head;
     while(fast && fast->next)
