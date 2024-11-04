@@ -3,6 +3,9 @@
 
 using namespace std;
 
+// TC = O(log2N)
+// SC = O(log2N)
+
 string BinaryToDecimal(int n)
 {
     string ans = "";
