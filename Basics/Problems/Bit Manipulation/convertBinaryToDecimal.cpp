@@ -6,7 +6,7 @@ using namespace std;
 // TC = O(log2N)
 // SC = O(log2N)
 
-string BinaryToDecimal(int n)
+string DecimalToBinary(int n)
 {
     string ans = "";
     while(n)
@@ -20,7 +20,7 @@ string BinaryToDecimal(int n)
 
 int main()
 {
-    cout<<BinaryToDecimal(13);
+    cout<<DecimalToBinary(13);
 }
 
 // OUTPUT:
