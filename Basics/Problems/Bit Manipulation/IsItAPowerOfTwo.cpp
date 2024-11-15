@@ -5,7 +5,8 @@ using namespace std;
 int main()
 {
     int n = 16;
-    if(((n)&(n-1))==0) cout<<"Yes";
+    if(n==0) cout<<"No";
+    else if(((n)&(n-1))==0) cout<<"Yes";
     else cout<<"No";
 }
 
@@ -26,4 +27,6 @@ int main()
 
 // 15 & 14 = 0110 != 0 
 // Not a power of 2
+
+// -16 = 110000
 
