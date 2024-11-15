@@ -3,9 +3,10 @@
 #include<cmath>
 
 using namespace std;
+// PROBLEM:
+// Given a number n, count the total number of set bits in the range of numbers 1 to n (both inclusive)
 
 // Approach:
-
 /*
 In 4 we have 2*2^(2-1) + 1= 5 set bits
 000
