@@ -3,6 +3,7 @@
 using namespace std;
 
 // Stack behind the scenes LOL
+// (Without considering the edge cases (just for simplicity of viewing))
 class Stack
 {
     int size;
