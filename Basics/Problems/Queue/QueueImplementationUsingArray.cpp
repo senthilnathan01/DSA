@@ -92,7 +92,23 @@ class Queue
 int main()
 {
     // Let's try out implementation of Queue
+    Queue q(6);
+    q.push(1);
+    q.push(2);
+    q.push(10);
+    q.push(7);
+    cout<<"Top element: "<<q.top()<<endl;
+    cout<<"Size: "<<q.size()<<endl;
+    cout<<"Removed element: "<<q.pop()<<endl;
+    cout<<"Top element: "<<q.top()<<endl;
+    cout<<"Size: "<<q.size()<<endl;
+    
     return 0;   
 }
 
 // OUTPUT:
+// Top element: 1
+// Size: 4
+// Removed element: 1
+// Top element: 2
+// Size: 3
