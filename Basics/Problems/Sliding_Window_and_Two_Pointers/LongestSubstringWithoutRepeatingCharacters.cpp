@@ -67,3 +67,7 @@ int main()
     cout<<longestSubstring1(s)<<endl;
     cout<<longestSubstring2(s);
 }
+
+// OUTPUT:
+// 3
+// 3
