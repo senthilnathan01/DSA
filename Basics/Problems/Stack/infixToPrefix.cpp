@@ -5,10 +5,7 @@
 using namespace std;
 
 /*
-Given an infix expression in the form of string s. Convert this infix expression to a postfix expression.
-
-Infix expression: The expression of the form a op b. When an operator is in between every pair of operands.
-Postfix expression: The expression of the form a b op. When an operator is followed for every pair of operands.
+Given an infix expression, Your task is to convert the given infix expression to a prefix expression.
 Note: The order of precedence is: ^ greater than * equals to / greater than + equals to -. Ignore the right associativity of ^.
 */
 
