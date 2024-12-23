@@ -1,6 +1,5 @@
 #include<iostream>
 #include<stack>
-#include<algorithm>
 
 using namespace std;
 
@@ -18,7 +17,7 @@ bool isOperand(char c)
     return false;
 }
 
-string preToInfix(string& s) {
+string postToInfix(string& s) {
     size_t n = s.length();
     stack<string> st;
     for(size_t i = 0; i<n; i++)
@@ -45,7 +44,7 @@ string preToInfix(string& s) {
 int main()
 {
     string s = "ab*c+";
-    cout<<preToInfix(s);
+    cout<<postToInfix(s);
     return 0;
 }
 
