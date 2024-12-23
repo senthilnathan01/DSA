@@ -16,10 +16,8 @@ Every close bracket has a corresponding open bracket of the same type.
 
 bool isMatch(char c1, char c2)
 {
-    if(c1 == '(' && c2 == ')') return true;
-    else if(c1 == '{' && c2 == '}') return true;
-    else if(c1 == '[' && c2 == ']') return true;
-    return false;
+    if((c1 == '(' && c2 == ')') || (c1 == '{' && c2 == '}') || (c1 == '[' && c2 == ']')) return true;
+    else return false;
 }
 
 bool isValid(string s) {
@@ -38,8 +36,8 @@ bool isValid(string s) {
             if(st.empty()) return false;
             char ch = st.top();
             st.pop();
-            if(isMatch(ch, s[i])) return true;
-            else return false;                           
+            if(isMatch(ch, s[i])) continue;
+            else return false;                    
         }
     }
     return st.empty();
@@ -47,11 +45,11 @@ bool isValid(string s) {
 
 int main()
 {
-    cout<<isValid("([])")<<endl;
+    cout<<isValid("([]}{)")<<endl;
     cout<<isValid("()]");
 }
 
 // OUTPUT:
-// 1
+// 0
 // 0
 
