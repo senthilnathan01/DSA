@@ -95,3 +95,6 @@ int main()
     cout<<subArrayRanges(nums)<<endl;
     return 0;
 }
+
+// OUTPUT:
+// 59
