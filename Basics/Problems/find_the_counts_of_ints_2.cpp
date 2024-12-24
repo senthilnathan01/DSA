@@ -8,8 +8,7 @@ using namespace std;
 // Find the number of times the numbers: 1, 4, 2, 3, 12 appear in the
 // array: {1, 3, 2, 1, 3}
 
-// Previously we saw how to use hashing to solve this problem
-// Let's solve this using mapping
+// Let's solve this using hashing
 
 int main(){
     int arr[5] = {1, 3, 2, 1, 3};
