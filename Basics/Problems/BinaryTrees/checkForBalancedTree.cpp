@@ -43,6 +43,25 @@ bool isBalanced(TreeNode* root) {
     return true;
 }
 
+// Better Approach
+int height2(TreeNode* root)
+{
+    if(root==NULL) return 0;
+
+    int lh = height2(root->left);
+    if(lh==-1) return -1;
+    int rh = height2(root->right);
+    if(rh==-1) return -1;
+    
+    if(abs(lh-rh)>1) return -1;
+
+    return 1+max(lh, rh);
+}
+bool isBalanced2(TreeNode* root)
+{
+    return height2(root) != -1;
+}
+
 int main()
 {
     TreeNode* root = new TreeNode(1);
