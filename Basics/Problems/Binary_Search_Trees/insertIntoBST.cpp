@@ -23,7 +23,7 @@ You are given the root node of a binary search tree (BST) and a value to insert 
 Notice that there may exist multiple valid ways for the insertion, as long as the tree remains a BST after insertion. You can return any of them.
 */
 
-TreeNode* insertIntoBST(TreeNode* root, int val) {
+TreeNode* insertIntoBST1(TreeNode* root, int val) {
     TreeNode* myNode = new TreeNode(val);
     TreeNode* curr = root;
     while(curr)
@@ -56,6 +56,24 @@ TreeNode* insertIntoBST(TreeNode* root, int val) {
     return myNode;
 }
 
+// Alternate Solution
+TreeNode* insertIntoBST(TreeNode* root, int val) {
+    if(root == nullptr)
+    {
+        return new TreeNode(val);
+    }
+
+    if(val < root->val)
+    {
+        root->left = insertIntoBST(root->left, val);
+    }
+    else
+    {
+        root->right = insertIntoBST(root->right, val);
+    }
+
+    return root;
+}
 int main()
 {
     TreeNode* root = new TreeNode(8);
