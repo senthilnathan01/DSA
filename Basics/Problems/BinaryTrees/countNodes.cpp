@@ -27,8 +27,15 @@ public:
         int cnt = 0;
         countMe(root, cnt);
         return cnt;
-
     }
+
+    // Or alternatively just this function will work
+    int countNodes2(TreeNode* root)
+    {
+        if(root==nullptr) return 0;
+        return 1 + countNodes2(root->left) + countNodes2(root->right);
+    }
+
 };
 
 int main()
