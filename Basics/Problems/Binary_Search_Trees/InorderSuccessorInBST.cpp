@@ -56,40 +56,45 @@ public:
         return -1;
     }
 
-    // Better approach would be to get to target as fast as possible
+    // Better approach
     int inOrderSuccessor(TreeNode *root, TreeNode *x) 
     {
-        // Base Case 1: No tree
+        // Base Case: No tree
         if(root==nullptr) return -1;
         
-        int target = x->val;
-        // Base Case 2: Root = x
-        if(root->val == target && root->right != nullptr)
+        int target = x->data;
+        Node* succ = nullptr;
+        Node* curr = root;
+        while(curr!=nullptr)
         {
-            // Get the leftmost in the right subtree after root
-            TreeNode* curr=root->right;
-            while(curr->left) curr = curr->left;
-            return curr->val;
-        }
-
-        // Search for target and successor
-        TreeNode* successor = nullptr;
-        TreeNode* curr = root;
-        while(curr != nullptr)
-        {
-            if(target < curr->val)
+            if(target < curr->data)
             {
-                successor = curr;
+                succ = curr;
                 curr = curr->left;
             }
-            else
+            else if(target > curr->data)
             {
                 curr = curr->right;
             }
+            else
+            {
+                if(curr->right)
+                {
+                    // Get the leftmost child from this right subtree
+                    curr = curr->right;
+                    while(curr->left) curr = curr->left;
+                    return curr->data;
+                    
+                }
+                else
+                {
+                    if(succ == nullptr) return -1;
+                    else return succ->data;
+                }
+            }
         }
-        if(successor == nullptr) return -1;
-        else return successor->val;
-    }    
+        return -1;
+    }
 };
 
 int main()
