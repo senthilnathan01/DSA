@@ -14,6 +14,9 @@ Return the total number of provinces.
 */
 
 // Approach 2
+// Using DFS
+// TC = O(n^2)
+// SC = O(n)
 class Solution
 {
 public:
