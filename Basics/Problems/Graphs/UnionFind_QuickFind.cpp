@@ -3,6 +3,11 @@
 
 using namespace std;
 
+// With quick find approach
+// TC for find() = O(1)
+// TC for union() = O(n)
+// TC for connected() = O(1)
+// TC for unionFind constructor = O(n)
 class UnionFind
 {
     private:
