@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-
+#include<queue>
 using namespace std;
 
 /*
@@ -13,39 +13,47 @@ You are given an n x n matrix isConnected where isConnected[i][j] = 1 if the ith
 Return the total number of provinces.
 */
 
-// Approach 2
-// Using DFS
+// Approach 1
+// Using BFS
 // TC = O(n^2)
 // SC = O(n)
-class Solution
-{
+class Solution {
 public:
-    void dfs(int n, int i, bool visited[], vector<vector<int>> &isConnected)
+    void bfs(int node, vector<vector<int>> &isConnected, vector<bool> &visited)
     {
-        visited[i] = true;
-        for(int j = 0; j<n; j++)
+        queue<int> q;
+        q.push(node);
+
+        visited[node] = true;
+
+        while(!q.empty())
         {
-            if(isConnected[i][j]==1)
+            node = q.front();
+            q.pop();
+
+            for(int i = 0; i < isConnected.size(); i++)
             {
-                if(visited[j]==false)
+                if(isConnected[node][i] && !visited[i])
                 {
-                    dfs(n, j, visited, isConnected);
+                    q.push(i);
+                    visited[i] = true;
                 }
             }
         }
     }
+
     int findCircleNum(vector<vector<int>>& isConnected)
     {
         int n = isConnected.size();
-        bool *visited = new bool[n];
-        for(int i = 0; i<n; i++) visited[i] = false;
         int count = 0;
+        vector<bool> visited(n);
+
         for(int i = 0; i<n; i++)
         {
-            if(visited[i]==false)
+            if(!visited[i])
             {
                 count++;
-                dfs(n, i, visited, isConnected);
+                bfs(i, isConnected, visited);
             }
         }
 
