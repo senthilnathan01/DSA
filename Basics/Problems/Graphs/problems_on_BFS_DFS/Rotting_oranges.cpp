@@ -18,7 +18,7 @@ If this is impossible, return -1.
 */
 class Solution {
 public:
-    int orangesRotting(vector<vector<int>>& grid) {
+    int orangesRotting1(vector<vector<int>>& grid) {
         int rows = grid.size();
         int cols = grid[0].size(); 
 
@@ -82,6 +82,54 @@ public:
         }
         else return max(0, time-1); 
     }
+
+    // Approach 2:
+    int orangesRotting2(vector<vector<int>> &grid)
+    {
+        // Edge Case
+        if(grid.empty()) return 0;
+
+        int rows = grid.size(), cols = grid[0].size(), time = 0;
+        int total = 0; // Total no of oranges (1 and 2)
+        int count = 0; // Total no of rotten oranges (2)
+        // At the end if total == count, we return time and -1 otherwise
+
+        queue<pair<int, int>> rotten;
+        
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols; j++)
+            {
+                if(grid[i][j] != 0) total++;
+                if(grid[i][j] == 2) rotten.push({i, j});
+            }
+        }
+
+        int dx[4] = {0, 0, 1, -1};
+        int dy[4] = {1, -1, 0, 0};
+
+        while(!rotten.empty())
+        {
+            int k = rotten.size();
+            count += k;
+
+            while(k--)
+            {
+                int x = rotten.front().first, y = rotten.front().second;
+                rotten.pop();
+                for(int i = 0; i < 4; i++)
+                {
+                    int nx = x + dx[i], ny = y + dy[i];
+                    if(nx < 0 || ny < 0 || nx >= rows || ny >= cols || grid[nx][ny] != 1) continue;
+                    grid[nx][ny] = 2;
+                    rotten.push({nx, ny});
+                }
+            }
+            if(!rotten.empty()) time++;
+        }
+
+        return total == count ? time : -1;
+    }
 };
 
 int main()
@@ -91,11 +139,13 @@ int main()
     // 1 1 0
     // 0 1 1
     Solution obj;
-    cout<< obj.orangesRotting(grid);
+    cout<< obj.orangesRotting1(grid)<<endl;
+    cout<< obj.orangesRotting2(grid)<<endl;
     return 0;
 }
 
 // OUTPUT:
+// 4
 // 4
 
 // Explanation:
