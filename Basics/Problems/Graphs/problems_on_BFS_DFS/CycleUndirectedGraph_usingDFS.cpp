@@ -36,7 +36,14 @@ class Solution {
     {
         int V = adj.size();
         bool visited[V] ={false};
-        return dfs(1, -1, visited, adj);
+        for(int i = 0; i < V; i++)
+        {
+            if(!visited[i])
+            {
+                if(dfs(i, -1, visited, adj)) return true;
+            }
+        }
+        return false;
     }
 
 };
