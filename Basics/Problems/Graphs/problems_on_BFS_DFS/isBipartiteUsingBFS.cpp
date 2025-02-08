@@ -1,5 +1,5 @@
 // Here we also consider for situations with multiple connected componenets.
-// For Problem Statement check out 
+// For Problem Statement check out https://github.com/senthilnathan01/DSA/blob/main/Basics/Problems/Graphs/problems_on_BFS_DFS/isBipartiteUsingDFS.cpp
 class Solution {
 public:
     bool isBipartite(vector<vector<int>>& graph) {
