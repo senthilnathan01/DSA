@@ -24,7 +24,7 @@ public:
         else if(rank[ulp_v] < rank[ulp_u]) parent[ulp_v] = ulp_u;
         else
         {
-            parent[ulp_u] = ulp_u;
+            parent[ulp_v] = ulp_u;
             rank[ulp_u]++;
         }
     }
