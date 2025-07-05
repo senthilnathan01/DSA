@@ -1,119 +1,179 @@
 #include<iostream>
+#include<map>
 #include<vector>
 #include<string>
-#define ll long long int
+
 using namespace std;
+
+/*
+What are we given:
+Initial map that has boxes, blocks and a robot.
+The robots' moves.
+
+What we want? The final map -> sum of all boxes' GPS coordinates. 
+
+Process:
+- Iterative one:
+- We see the current map. 
+- Get the robot's next move
+- Make change in the map.
+- That's it.
+
+More Detail please:
+- get the map data. store it in map<string>
+- get the robot's moves. store it in string robotMoves 
+- iteration is (for char in robot_moves<string>)
+- we know the current robotpos
+- we know it's next move
+- we see few scenarios 
+
+- scenario 1:
+- will move == there is an empty space
+
+- scenario 2:
+- will not move == there is no empty space
+
+*/
+
+int mapsize = 50; //// Change here
+int robotMoveLines = 20; //// Change here
+
+vector<string> mpp(mapsize);
+string robotMoves;
+pair<int, int> robotPos;
+pair<int, int> nextPlace;
+
+pair<int, int> getNextPlace(char robotMove)
+{
+    switch (robotMove)
+    {
+        case '<':
+            return {robotPos.first, robotPos.second -1};
+            break;
+        case '^':
+            return {robotPos.first -1, robotPos.second};
+            break;
+        case '>':
+            return {robotPos.first, robotPos.second + 1};
+            break;
+        case 'v':
+            return {robotPos.first + 1, robotPos.second};
+            break;
+    }
+}
+
+pair<int, int> checkSpace(char robotMove)
+{
+    // return the emptySpace and return -1 if no empty space
+    pair<int, int> emptySpace = robotPos;
+    switch (robotMove)
+    {
+        case '<':
+            emptySpace.second -= 1;
+            while(emptySpace.second > 0 && mpp[emptySpace.first][emptySpace.second]=='O')
+            {
+                emptySpace.second--;
+            } 
+            break;
+        case '^':
+            emptySpace.first -= 1;
+            while(emptySpace.first > 0 && mpp[emptySpace.first][emptySpace.second]=='O')
+            {
+                emptySpace.first--;
+            }
+            break;             
+        case '>':
+            emptySpace.second += 1;
+            while(emptySpace.second < mapsize && mpp[emptySpace.first][emptySpace.second]=='O')
+            {
+                emptySpace.second++;
+            }        
+            break;     
+        case 'v':
+            emptySpace.first += 1;
+            while(emptySpace.first < mapsize && mpp[emptySpace.first][emptySpace.second]=='O')
+            {
+                emptySpace.first++;
+            } 
+            break;
+    }    
+    if(mpp[emptySpace.first][emptySpace.second]=='.') return emptySpace;
+    else return {-1, -1};
+}
+
+void updateMap(char robotMove)
+{
+    pair<int, int> nextPlace = getNextPlace(robotMove);
+    switch (mpp[nextPlace.first][nextPlace.second])
+    {
+        case ('.'):
+            // Update the map
+            mpp[nextPlace.first][nextPlace.second] = '@';
+            mpp[robotPos.first][robotPos.second] = '.';
+            // Update the robotPos
+            robotPos = nextPlace;
+            break;
+
+        case ('O'):
+            // Check if there is a space to move the box to
+            pair<int, int> emptySpace = checkSpace(robotMove);
+            if(emptySpace.first != -1 && emptySpace.second != -1)
+            {
+                mpp[nextPlace.first][nextPlace.second] = '@';
+                mpp[robotPos.first][robotPos.second] = '.';
+                mpp[emptySpace.first][emptySpace.second] = 'O';
+                robotPos = nextPlace;
+            }
+            break;
+    }
+}
 
 int main()
 {
-    int rows = 50, cols = 50;
-    vector<string> map(rows); //Stores the map
-    for(int i = 0; i<rows; i++) getline(cin, map[i]);
-    string temp;
-    string robotMoves; //Has all the robot moves stored in a single string
-    for(int i = 0; i<20; i++)
-    {
-        getline(cin, temp);
-        robotMoves.append(temp);
-    } 
+    // GETTING THE INPUT DATA:
 
-    // Find @ in the map to get the robot's initial position
-    pair<int, int> robotPos;
-    for(int i = 0; i<rows; i++)
+    // Get the map
+    for(int i = 0; i < mapsize; i++) cin>>mpp[i];
+
+    //Let's get the robot's moves too
+    string temp;
+    for(int i = 0; i < robotMoveLines; i++) 
     {
-        for(int j = 0; j<cols; j++)
+        cin>>temp;
+        robotMoves.append(temp);
+    }
+
+    // Find the robot's initial Pos == Find the location of @
+    for(int currRow = 0; currRow < mapsize; currRow++)
+    {
+        for(int currCol = 0; currCol < mapsize; currCol++)
         {
-            if(map[i][j]=='@') 
+            if(mpp[currRow][currCol] == '@')
             {
-                robotPos = {i,j};
+                robotPos = {currRow, currCol};
                 break;
             }
         }
     }
 
-    int n = robotMoves.size();
-    for(int currentRoboMove = 0; currentRoboMove<n; currentRoboMove++)
+    // The process starts:
+    int num_iters = robotMoves.size();
+    for(char robotMove : robotMoves)
     {
-        char dir = robotMoves[currentRoboMove];
-        int i = robotPos.first;
-        int j = robotPos.second;
-        if(dir == '<')
+        updateMap(robotMove);
+    }
+
+    // Get the sum, man
+    int sum = 0;
+    for(int currRow = 0; currRow < mapsize; currRow++)
+    {
+        for(int currCol = 0; currCol < mapsize; currCol++)
         {
-            while(j>0 && map[i][j]!='.')
-            {
-                if(map[i][j]=='#') break;
-                j--;
-            }
-            if(map[i][j]=='.')
-            {
-                while(j!=robotPos.second)
-                {
-                    swap(map[i][j], map[i][j+1]);
-                    j++;
-                }
-                robotPos = {i, j-1};
-            }
-        }
-        else if(dir == '^')
-        {
-            while(i>0 && map[i][j]!='.')
-            {
-                if(map[i][j]=='#') break;
-                i--;
-            }
-            if(map[i][j]=='.')
-            {
-                while(i!=robotPos.first)
-                {
-                    swap(map[i][j], map[i+1][j]);
-                    i++;
-                }
-                robotPos = {i-1, j};
-            }
-        }
-        else if(dir == '>')
-        {
-            while(j<cols-1 && map[i][j]!='.')
-            {
-                if(map[i][j]=='#') break;
-                j++;
-            }
-            if(map[i][j]=='.')
-            {
-                while(j!=robotPos.second)
-                {
-                    swap(map[i][j], map[i][j-1]);
-                    j--;
-                }
-                robotPos = {i, j+1};
-            }
-        }
-        else 
-        {
-            while(i<rows-1 && map[i][j]!='.')
-            {
-                if(map[i][j]=='#') break;
-                i++;
-            }
-            if(map[i][j]=='.')
-            {
-                while(i!=robotPos.first)
-                {
-                    swap(map[i][j], map[i-1][j]);
-                    i--;
-                }
-                robotPos = {i+1, j};
-            }
+            if(mpp[currRow][currCol] == 'O') sum += currRow*100 + currCol;
         }
     }
-    ll sum = 0;
-    for(int i = 1; i<rows-1; i++)
-    {
-        for(int j = 1; j<cols-1; j++)
-        {
-            if(map[i][j]=='O') sum+= (ll)(100*i+j);
-        }
-    }
-    cout<<sum;
     
+    cout<<sum;
+
+    return 0;
 }
