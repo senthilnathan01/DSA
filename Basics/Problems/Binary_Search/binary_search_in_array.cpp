@@ -29,5 +29,5 @@ int binary_search(int arr[], int low, int high, int K){
 
 int main() {
     int nums[5] = {1, 2, 3, 4, 5};
-    return binary_search(nums, 0, 8, 3);
+    return binary_search(nums, 0, 4, 3);
 }
