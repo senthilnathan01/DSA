@@ -106,3 +106,77 @@ public:
 
 // Solution 3:
 // Let's use stack again but with one pass
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        int maxArea = 0;
+        stack<pair<int, int>> st; // {index, height}
+
+        int n = heights.size();
+
+        for(int i = 0; i < n; i++)
+        {
+            int start = i;
+            while(!st.empty() && st.top().second > heights[i])
+            {
+                pair<int, int> t = st.top();
+                int index = t.first;
+                int height = t.second;
+                maxArea= max(maxArea, height*(i-index));
+                start = index;
+                st.pop();
+            }
+            st.push({start, heights[i]});
+        }
+
+        // Dry Run of the above process
+        // i = 0
+        // st is empty
+        // {0, 2} is pushed to st
+
+        // i = 1
+        // st is not empty
+        // 2 > 1
+        // maxArea = 2
+        // start = 1
+        // {0, 2} is popped
+        // {1, 1} is pushed
+
+        // i = 2
+        // st is not empty
+        // 1 < 5
+        // {2, 5} is pushed
+
+        // i = 3
+        // st is not empty
+        // 5 < 6
+        // {3, 6} is pushed
+
+        // i = 4
+        // st is not empty
+        // 6 > 2
+        // maxArea = 6
+        // start = 3
+        // maxArea = 10
+        // start = 2
+        // {2, 2} is pushed
+
+        // i = 5
+        // st is not empty
+        // 1 < 3
+        // {5, 3} is pushed
+
+        // St is still not empty -> we need to calculate few more areas and update the maxArea
+
+        while(!st.empty())
+        {
+            int index = st.top().first;
+            int height = st.top().second;
+            maxArea = max(maxArea, height*(static_cast<int>(heights.size())  - index));
+            // These have right boundary at the end
+            st.pop();
+        }
+
+        return maxArea;
+    }
+};
