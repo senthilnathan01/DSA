@@ -106,16 +106,6 @@ public:
 // Solution 4:
 // Instead of changing the existing links
 // Create a new linked list which is a reverse of the given one
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
