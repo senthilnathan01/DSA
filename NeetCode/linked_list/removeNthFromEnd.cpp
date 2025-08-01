@@ -15,6 +15,42 @@ Given the head of a linked list, remove the nth node from the end of the list an
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
+        // Approach:
+        // The best approach is to use Two Pointers:
+        // Move one pointer n steps ahead, then move both until the first hits the end.
+
+        // Create a dummy node to simplify edge cases (like deleting the head)
+        ListNode* dummy = new ListNode(0, head);
+
+        // Two Pointers
+        ListNode *fast = dummy, *slow = dummy;
+
+        // Step 1: Move fast pointer n steps ahead 
+        for(int i = 0; i <= n; i++) fast = fast->next;
+
+        // Step 2: Move both of the until fast reaches the end
+        while(fast)
+        {
+            fast = fast->next;
+            slow = slow->next;
+        }
+
+        // Step 3: Skip the node after slow
+        ListNode* nodeToDelete = slow->next;
+        slow->next = slow->next->next;
+
+        delete nodeToDelete;
+
+        return dummy->next;
+
+    }
+};
+
+
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
         // reverse the list 
         // remove nth node from the end
         // reverse the list again
