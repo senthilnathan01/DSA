@@ -46,3 +46,23 @@ public:
         return res;
     }
 };
+
+// Better
+class Solution {
+public:
+    int maxPathSum(TreeNode* root) {
+        int sum = root->val;
+        pathsum(root, sum);
+        return sum;
+    }
+
+    int pathsum(TreeNode* node, int& sum)
+    {
+        if(node==NULL) return 0;
+        int ls = max(0, pathsum(node->left, sum));
+        int rs = max(0, pathsum(node->right, sum));  
+        sum = max(sum, node->val + ls + rs);
+        return node->val + max(ls,rs);
+    }
+};
+
