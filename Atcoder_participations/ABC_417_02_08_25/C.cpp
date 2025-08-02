@@ -28,3 +28,27 @@ int main()
     
     return 0;
 }
+
+// The above is an optimised version of
+// int main()
+// {
+//     int n; cin>>n;
+//     vector<int> a (n+1);
+//     for(int i = 1; i <= n; i++) cin>>a[i];
+
+//     int count = 0;
+
+//     for(int i = 1; i <= n; i++)
+//     {
+//         for(int j = i+1; j <= n; j++)
+//         {
+//             if(j-i==a[i]+a[j])
+//             {
+//                 count++;
+//             }
+//         }
+//     }
+//     cout<<count;
+
+//     return 0;
+// }
