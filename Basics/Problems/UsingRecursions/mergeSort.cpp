@@ -1,3 +1,6 @@
+// TC = O(log_2(n)*n)
+// SC = O(n)
+
 class Solution {
   public:
     void merge(vector<int> &arr, int low, int mid, int high)
