@@ -102,7 +102,7 @@ O(1) lookup, insert, erase instead of O(log n).
 Instead of scanning row/col repeatedly, made a vector of coordinates of empty cells once,
 then backtrack through that vector.
 
-  3. Use a single backtrack(idx) instead of two nested functions:
+  3. Used a single backtrack(idx) instead of two nested functions:
 
 Passing (row, col) around in separate functions costs extra recursion overhead.
 If you pre-store empty cell positions, idx just moves from 0 to empty_count-1.
@@ -114,6 +114,9 @@ Small performance gain by avoiding function call overhead.
 // Result:
 // Runtime: 2000 ms -> 80 ms
 // Reduction: 96%
+
+// Memory: 413.6 MB -> 8.9 MB
+// Reduction: 98%
 
 class Solution {
     vector<array<bool, 10>> row, col, box;
