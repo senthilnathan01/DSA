@@ -22,7 +22,6 @@ vector<int> findNGE(vector<int>& nums)
     return ans;
 }
 
-
 int main()
 {
     vector<int> nums = {1,3,4,2};
@@ -32,4 +31,30 @@ int main()
 }
 
 // OUTPUT:
+
 // 3 4 -1 -1 
+
+
+// Approach 2:
+int main()
+{
+    int n; cin>>n;
+    vector<int> a(n);
+    vector<int> ans(n, -1);
+    stack<int> st;
+
+    for(int i = 0; i < n; i++)
+    {
+        cin>>a[i];
+        while(!st.empty() && a[st.top()] < a[i])
+        {
+            ans[st.top()] = a[i];
+            st.pop();
+        }
+        st.push(i);
+    }
+
+    for(auto num: ans) cout<<num<<" ";
+
+    return 0;
+}
