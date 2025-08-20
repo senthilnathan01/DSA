@@ -52,3 +52,19 @@ class Solution {
 };
 
 // We gotta space optimise
+// In the dp table, each row i depends only on the previous row i-1.
+// So instead of keeping the full 2D table, we can just use a 1D boolean array of size sum+1.
+class Solution {
+  public:
+    bool isSubsetSum(vector<int>& arr, int sum) {
+        vector<bool> dp(sum + 1, false);
+        dp[0] = true;  
+    
+        for (int num : arr) {
+            for (int j = sum; j >= num; j--) {
+                dp[j] = dp[j] || dp[j - num];
+            }
+        }
+        return dp[sum];
+    }   
+};
