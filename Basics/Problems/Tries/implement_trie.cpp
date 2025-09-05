@@ -17,7 +17,7 @@ struct Node{
     Node *links[26];
 
     // flag indicating if the node marks the end of the word
-    bool flag = false;
+    bool isLeaf = false;
 
     // Check if the node contains a specific key
     bool containsKey(char c){ return (links[c-'a'] != NULL);}
@@ -29,10 +29,10 @@ struct Node{
     Node* get(char c) {return links[c -'a'];}
 
     // Set the current Node as the end of the word
-    void setEnd() {flag = true;}  
+    void setEnd() {isLeaf = true;}  
 
     // Check if the current node marks the end of the word
-    bool isEnd() {return flag;}
+    bool isEnd() {return isLeaf;}
 };
 
 class Trie {
