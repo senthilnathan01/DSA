@@ -47,3 +47,30 @@ public:
         return (int)prev[m];
     }
 };
+
+// Let's step up this more?
+// Key change: Only one vector instead of two
+// Iterating backwards
+// If u see curr[j] only depends on prev[j] (which is what curr was previously)
+// we don't even need this
+// But we can't directly replace prev with curr
+// We can if we iterate backwards as the values wouldn't have changed
+
+class Solution {
+public:
+    int numDistinct(string s, string t) {
+        int m = s.length(), n = t.length();
+        // a non empty/empty s can match empty t as it has empty string
+        vector<uint64_t> curr(n+1, 0);
+        curr[0] = 1;
+
+        for(int i = 1; i <= m; i++){
+            for(int j = n; j >= 1; j--){
+                // only one case
+                // if pointer at s matches the pointer at t
+                if(s[i-1]==t[j-1]) curr[j] += curr[j-1];
+            }
+        }
+        return (int)curr[n];
+    }
+};
