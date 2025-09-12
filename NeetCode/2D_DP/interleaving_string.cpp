@@ -28,11 +28,30 @@ public:
         for(int i = 1; i <= a; i++){
             for(int j = 1; j <= b; j++){
                 dp[i][j] = ((dp[i-1][j] && s1[i-1] == s3[i+j-1]) ||
-                (dp[i][j-1] && s2[j-1]==s3[i+j-1]));
+                            (dp[i][j-1] && s2[j-1]==s3[i+j-1]));
             }
         }
         return dp[a][b];
     }
 };
 
+// Using 1D
+class Solution {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        int a = s1.length(), b = s2.length(), tot = s3.length();
+        if(a+b!=tot) return false;
 
+        vector<bool> dp(a+1);
+        dp[0] = true;
+
+        for(int i = 1; i <= a; i++) dp[i] = dp[i-1] && s1[i-1]==s3[i-1];
+        for(int j = 1; j <= b; j++){
+            dp[0] = dp[0] && s2[j-1] == s3[j-1];
+            for(int i = 1; i <= a; i++) dp[i] = (dp[i] && s2[j-1]==s3[i+j-1]) || (dp[i-1] && s1[i-1]==s3[i+j-1]);
+        }
+        return dp[a];
+    }
+};
+
+// 
