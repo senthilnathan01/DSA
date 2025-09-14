@@ -16,3 +16,28 @@ The distance between two cells having their coordinates (x1,y1) and (x2,y2) are 
 LINK: https://www.naukri.com/code360/problems/walls-and-gates_1092887
 */
 
+#include <bits/stdc++.h> 
+vector<vector<int>> wallsAndGates(vector<vector<int>> &a, int n, int m) {
+    queue<pair<int, int>> q;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(a[i][j]==0) q.push({i, j});
+        }
+    }
+
+    vector<pair<int, int>> dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+    while(!q.empty()){
+        auto [r, c] = q.front();
+        q.pop();
+        for(auto [dx, dy]: dirs){
+            int nr = r + dx, nc = c + dy;
+            if(nr>=0 && nr<n && nc >= 0 && nc<m && a[nr][nc]==INT_MAX){
+                a[nr][nc] = a[r][c] + 1;
+                q.push({nr, nc});
+            }
+        }
+    }
+    return a;
+}
+
