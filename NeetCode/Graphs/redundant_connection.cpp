@@ -43,5 +43,35 @@ public:
 };
 
 // Approach 2 Using DSU
+struct DSU{
+    vector<int> parent, size;
+    DSU(int n){
+        parent.resize(n+1);
+        size.assign(n+1, 1);
+        for(int i = 0; i <=n; i++) parent[i]=i;
+    }
 
+    int find(int x){
+        if(parent[x]==x) return x;
+        return parent[x] = find(parent[x]);
+    }
 
+    bool unite(int a, int b){
+        a = find(a), b = find(b);
+        if(a==b) return false; // cycle detected
+        if(size[a]<size[b]) swap(a, b);
+        parent[b] = a;
+        size[a]+=size[b];
+        return true;
+    }
+};
+
+class Solution {
+public:
+    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
+        int n = edges.size();
+        DSU dsu(n);
+        for(auto &e: edges) if(!dsu.unite(e[0], e[1])) return e;
+        return {};
+    }
+};
