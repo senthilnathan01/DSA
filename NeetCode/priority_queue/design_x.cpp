@@ -9,6 +9,8 @@ List<Integer> getNewsFeed(int userId) Retrieves the 10 most recent tweet IDs in 
 Each item in the news feed must be posted by users who the user followed or by the user themself. Tweets must be ordered from most recent to least recent.
 void follow(int followerId, int followeeId) The user with ID followerId started following the user with ID followeeId.
 void unfollow(int followerId, int followeeId) The user with ID followerId started unfollowing the user with ID followeeId.
+
+LINK: https://leetcode.com/problems/design-twitter/description/
 */
 class Twitter {
 private:
