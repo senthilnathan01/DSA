@@ -12,12 +12,25 @@ LINK: https://leetcode.com/problems/valid-parenthesis-string/description/
 */
 class Solution {
 public:
-    bool canJump(vector<int>& nums) {
-        int n = nums.size();
-        int goodPos = n-1;
-        for(int i = n-2; i >= 0; i--){
-            if(nums[i]+i >= goodPos) goodPos = i;
+    bool checkValidString(string s) {
+        stack<int> open;
+        stack<int> asterisk;
+        for(int i =0; i < s.length(); i++){
+            if(s[i]=='(') open.push(i);
+            else if(s[i]=='*') asterisk.push(i);
+            else{
+                if(!open.empty()) open.pop();
+                else if(!asterisk.empty()) asterisk.pop();
+                else return false;
+            }
         }
-        return goodPos == 0;
+
+        while(!open.empty() && !asterisk.empty()){
+            if(open.top()>asterisk.top()) return false;
+            open.pop();
+            asterisk.pop();
+        }
+        return open.empty();
+        
     }
 };
