@@ -10,3 +10,24 @@ LINK: https://www.geeksforgeeks.org/problems/minimum-platforms-1587115620/1
 #medium
 */
 
+class Solution {
+  public:
+    int minPlatform(vector<int>& arr, vector<int>& dep) {
+        int n = arr.size();
+        sort(arr.begin(), arr.end());
+        sort(dep.begin(), dep.end());
+        
+        int cnt = 0;
+        int ans = 0;
+        int j = 0;
+        for(int i = 0; i < n; i++){
+            while(j < n && dep[j] < arr[i]){
+                cnt--;
+                j++;
+            }
+            cnt++;
+            ans = max(ans, cnt);
+        }
+        return ans;
+    }
+};
