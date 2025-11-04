@@ -6,6 +6,7 @@ Note: Do traverse in the same order as they are in the given adjacency list.
 
 LINK: https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
 Companies: Samsung + Delhivery + SAP Labs; This is basics tho. U gotta know this!
+# Difficulty: Easy
 */
 
 class Solution {
