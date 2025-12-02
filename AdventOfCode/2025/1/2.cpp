@@ -35,3 +35,33 @@ int main() {
     return 0;
 }
 
+// More Optimised 
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+
+    int lines = 4777;
+    string temp;
+    int pos = 50;
+    int ans = 0;
+    while(lines--){
+        cin>>temp;
+        char d = temp[0];
+        int jump = stoi(temp.substr(1, temp.length()-1));
+        if(d=='L'){
+            pos = 100 - pos;
+            ans += (pos + jump)/100 - (pos/100);
+            pos = (pos + jump)%100;
+            pos = 100 - pos;
+        }
+        else{
+            ans += (pos + jump)/100 - (pos/100);
+            pos = (pos + jump)%100;
+        }
+    }
+    cout<<ans;
+    return 0;
+}
