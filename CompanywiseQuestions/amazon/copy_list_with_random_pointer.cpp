@@ -60,3 +60,41 @@ public:
         return mp[head];
     }
 };
+
+// More optimisation in space
+class Solution {
+public:
+    string reorganizeString(string s) {
+        // few observations:
+        // 1.max freq of char <= (n+1)/2 else return ""
+        // 2.place max freq char at first (strategy)
+        // this gives a observation
+        // first place along 0..2..4..(even places) and the remaining in the odd places
+        // take care to place the last number according to n
+        int n = s.size();
+        vector<int> freq(26, 0);
+        for(char c: s) freq[c-'a']++;
+
+        int maxi = 0;
+        for(int f: freq) maxi = max(maxi, f);
+        if(maxi>(n+1)/2) return "";
+
+        vector<pair<int, char>> chars;
+        for(int i = 0; i < 26; i++) if(freq[i]>0) chars.push_back({freq[i], char('a'+i)});
+
+        sort(chars.rbegin(), chars.rend());
+        
+        string ans(n, ' ');
+        int idx = 0;
+        for(auto &[f,c]: chars){
+            while(f>0){
+                ans[idx] = c;
+                idx+=2;
+                if(idx>=n) idx = 1;
+                f--;
+            }
+        }
+        return ans;
+
+    }
+};
