@@ -15,6 +15,15 @@ LINK: https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/descript
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
 public:
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
@@ -41,13 +50,14 @@ public:
         // do BFS
         unordered_set<TreeNode*> visited;
         queue<TreeNode*> bfs;
+
         bfs.push(target);
         int distance = 0;
         visited.insert(target);
         
         while(!bfs.empty()){
             int size = bfs.size();
-            if(distance = k){
+            if(distance == k){
                 vector<int> ans;
                 while(!bfs.empty()){
                     ans.push_back(bfs.front()->val);
