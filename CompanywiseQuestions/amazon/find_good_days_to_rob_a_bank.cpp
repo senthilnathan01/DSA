@@ -5,7 +5,7 @@ A subarray of an array is a consecutive sequence of zero or more values taken ou
 
 Return the maximum length of a subarray with positive product.
 
-LINK: https://leetcode.com/problems/maximum-length-of-subarray-with-positive-product/description/
+LINK: https://leetcode.com/problems/find-good-days-to-rob-the-bank/description/
 */
 
 class Solution {
