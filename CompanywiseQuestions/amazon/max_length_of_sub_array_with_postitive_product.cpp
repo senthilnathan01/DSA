@@ -51,3 +51,29 @@ public:
         return ans;
     }
 };
+
+// Cleaner DP version
+class Solution {
+public:
+    int getMaxLen(vector<int>& nums) {
+        int posLen = 0, negLen = 0, ans = 0;
+        int temp;
+        for(int num: nums){
+            if(num==0){
+                posLen = negLen = 0;
+            }
+            else if(num>0){
+                posLen++;
+                if(negLen) negLen++;
+            }
+            else{
+                temp = posLen;
+                posLen = (negLen > 0 ? negLen + 1: 0);
+                negLen = temp + 1;
+            }
+            ans = max(ans, posLen);
+        }
+        return ans;
+    }
+};
+
