@@ -7,7 +7,6 @@ Return the maximum length of a subarray with positive product.
 
 LINK: https://leetcode.com/problems/maximum-length-of-subarray-with-positive-product/description/
 */
-
 class Solution {
 public:
     int getMaxLen(vector<int>& nums) {
@@ -42,6 +41,8 @@ public:
 
             if(num_negs%2==0) ans = max(ans, end-start);
             else{
+                // the final number of the subarray is just before end. (notice that we did end++ at the end)
+                // so we put (end - 1)
                 ans = max(ans, end-1 -firstNeg);
                 ans = max(lastNeg-start, ans);
             }
