@@ -5,7 +5,7 @@ Design a system that suggests at most three product names from products after ea
 
 Return a list of lists of the suggested products after each character of searchWord is typed.
 
-LINK: https://leetcode.com/problems/search-suggestions-system/description/
+LINK: https://leetcode.com/problems/sequential-digits/description/
 */  
 
 class Solution {
