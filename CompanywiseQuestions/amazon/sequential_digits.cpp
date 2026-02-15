@@ -1,9 +1,7 @@
 /*
-You are given an array of strings products and a string searchWord.
+An integer has sequential digits if and only if each digit in the number is one more than the previous digit.
 
-Design a system that suggests at most three product names from products after each character of searchWord is typed. Suggested products should have common prefix with searchWord. If there are more than three products with a common prefix return the three lexicographically minimums products.
-
-Return a list of lists of the suggested products after each character of searchWord is typed.
+Return a sorted list of all the integers in the range [low, high] inclusive that have sequential digits.
 
 LINK: https://leetcode.com/problems/sequential-digits/description/
 */  
